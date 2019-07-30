@@ -3,7 +3,7 @@ phases:
   install:
     commands:
       - "pip install -r requirements.txt"
-      - "echo '{\"stages\":{\"development\":'\\ '{\"api_gateway_stage\":\"development\",\"environment_variables\":'\\ '{ \"APP_S3_BUCKET\":'\"\\\"$APP_S3_BUCKET\\\"\",' }}}, \"version\":\"2.0\",\"app_name\":\"todo\"}' >> .chalice/config.json"
+      - "echo '{\"stages\":{\"development\":'\\ '{\"api_gateway_stage\":\"development\",\"environment_variables\":'\\ '{ \"APP_S3_BUCKET\":'\"\\\"$APP_S3_BUCKET\\\"\"' }}}, \"version\":\"2.0\",\"app_name\":\"todo\"}' >> .chalice/config.json"
       - "cat .chalice/config.json"
       - "chalice deploy --stage development"
     runtime-versions:
