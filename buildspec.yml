@@ -1,16 +1,11 @@
-version: 0.2
+---
 phases:
   install:
-    runtime-versions:
-        python: 3.7
     commands:
-      - pip install --upgrade awscli
-      - aws --version
-      - pip install chalice
-      - pip install -r requirements.txt
-      - chalice package /tmp/packaged
-      - aws cloudformation package --template-file /tmp/packaged/sam.json --s3-bucket ${APP_S3_BUCKET} --output-template-file transformed.yaml
-artifacts:
-  type: zip
-  files:
-    - transformed.yaml
+      - "pip install -r requirements.txt"
+      - "echo '{\"stages\":{\"development\":'\\ '{\"api_gateway_stage\":\"development\",\"environment_variables\":'\\ '{ \"APP_S3_BUCKET\":'\"\\\"$APP_S3_BUCKET\\\"\",' }}}, \"version\":\"2.0\",\"app_name\":\"todo\"}' >> .chalice/config.json"
+      - "cat .chalice/config.sample.json"
+      - "chalice deploy --stage development"
+    runtime-versions:
+      python: 3.7
+version: 0.2
