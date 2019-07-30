@@ -8,6 +8,9 @@ def index():
     return {'hello': 'world'}
 
 
+@app.route('/test')
+def test():
+    return {'message': 'this is a test response'}
 # The view function above will return {"hello": "world"}
 # whenever you make an HTTP GET request to '/'.
 #
